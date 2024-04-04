@@ -1,0 +1,3 @@
+@id = 95d3be44-7996-410a-a47b-f273531d03b0
+
+DELETE  https://localhost:7213/employees/{{id}}

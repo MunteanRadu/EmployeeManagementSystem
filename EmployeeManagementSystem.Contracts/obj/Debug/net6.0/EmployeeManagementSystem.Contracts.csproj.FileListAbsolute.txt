@@ -1,0 +1,12 @@
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\bin\Debug\net6.0\EmployeeManagementSystem.Contracts.deps.json
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\bin\Debug\net6.0\EmployeeManagementSystem.Contracts.dll
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\bin\Debug\net6.0\EmployeeManagementSystem.Contracts.pdb
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\EmployeeManagementSystem.Contracts.csproj.AssemblyReference.cache
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\EmployeeManagementSystem.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\EmployeeManagementSystem.Contracts.AssemblyInfoInputs.cache
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\EmployeeManagementSystem.Contracts.AssemblyInfo.cs
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\EmployeeManagementSystem.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\EmployeeManagementSystem.Contracts.dll
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\refint\EmployeeManagementSystem.Contracts.dll
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\EmployeeManagementSystem.Contracts.pdb
+C:\Users\radum\EmployeeManagementSystem\EmployeeManagementSystem.Contracts\obj\Debug\net6.0\ref\EmployeeManagementSystem.Contracts.dll

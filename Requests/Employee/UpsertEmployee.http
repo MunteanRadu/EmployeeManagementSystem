@@ -1,0 +1,18 @@
+@id = 95d3be44-7996-410a-a47b-f273531d03b0
+
+PUT https://localhost:7213/employees/{{id}}
+Content-Type: application/json
+
+{
+    "firstName": "Mark 2",
+    "lastName": "Fishbach",
+    "age": 27,
+    "startDateTime": "2023-08-08T08:00:00",
+    "dateOfBirth": "1996-01-01T11:00:00",
+    "skillset": [
+        "Communication",
+        "Leadership",
+        "Fast Learner",
+        "Python"
+    ]
+}
