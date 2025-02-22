@@ -6,6 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="ErrorOr" Version="1.10.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.3.0" />
+    <PackageReference Include="MongoDb.Driver" Version="2.29.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>
 
   <PropertyGroup>

@@ -1,7 +1,7 @@
 namespace EmployeeManagementSystem.Contracts.Employee;
 
 public record EmployeeResponse(
-    Guid ID,
+    string ID,
     string FirstName,
     string LastName,
     int age,

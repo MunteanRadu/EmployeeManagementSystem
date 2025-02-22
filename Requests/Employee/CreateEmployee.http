@@ -2,9 +2,9 @@ POST https://localhost:7213/employees
 Content-Type: application/json
 
 {
-    "firstName": "Mark",
-    "lastName": "Fishbach",
-    "age": 27,
+    "firstName": "Alex",
+    "lastName": "Makedonski",
+    "age": 20,
     "startDateTime": "2023-08-08T08:00:00",
     "dateOfBirth": "1996-01-01T11:00:00",
     "skillset": [
@@ -17,4 +17,4 @@ Content-Type: application/json
 
 
 ###
-GET https://localhost:7213/Employees/ccaac6d5-d529-4796-b7a0-0ccf29b21347
+GET https://localhost:7213/Employees/66fae24e162dec79f777c642

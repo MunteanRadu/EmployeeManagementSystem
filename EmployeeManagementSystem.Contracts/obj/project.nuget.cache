@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "2s2rM0aKVzvoSqH9pKewrBORCyk8g2IxOdOUTncKgva5oEn1anQEJh6+dLPzF6dy4Cg+Lt2EmCqflLAxyD5H1Q==",
+  "dgSpecHash": "FLLxziqj5g0=",
   "success": true,
   "projectFilePath": "C:\\Users\\radum\\EmployeeManagementSystem\\EmployeeManagementSystem.Contracts\\EmployeeManagementSystem.Contracts.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\radum\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.33\\microsoft.netcore.app.ref.6.0.33.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.33\\microsoft.windowsdesktop.app.ref.6.0.33.nupkg.sha512",
+    "C:\\Users\\radum\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.33\\microsoft.aspnetcore.app.ref.6.0.33.nupkg.sha512"
+  ],
   "logs": []
 }

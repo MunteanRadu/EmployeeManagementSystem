@@ -1,6 +1,8 @@
 using EmployeeManagementSystem.Contracts.Employee;
 using EmployeeManagementSystem.ServiceErrors;
 using ErrorOr;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace EmployeeManagementSystem.Models;
 
@@ -12,17 +14,20 @@ public class Employee
     public const int MinAge = 18;
     public const int MaxAge = 65;
 
-    public Guid Id { get; }
-    public string FirstName { get; }
-    public string LastName { get; }
-    public int Age { get; }
-    public DateTime StartDateTime { get; }
-    public DateTime DateOfBirth { get; }
-    public DateTime LastModifiedDateTime { get; }
-    public List<string> Skillset { get; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
+    
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public int Age { get; set; }
+    public DateTime StartDateTime { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public DateTime LastModifiedDateTime { get; set; }
+    public List<string> SkillSet { get; set; }
 
     private Employee(
-        Guid id, 
+        string id, 
         string firstName, 
         string lastName,
         int age,
@@ -38,7 +43,7 @@ public class Employee
         StartDateTime = startDateTime;
         DateOfBirth = dateOfBirth;
         LastModifiedDateTime = lastModifiedDateTime;
-        Skillset = skillset;
+        SkillSet = skillset;
     }
 
     public static ErrorOr<Employee> Create(
@@ -48,7 +53,7 @@ public class Employee
         DateTime startDateTime,
         DateTime dateOfBirth,
         List<string> skillset,
-        Guid? id = null)
+        string? id = null)
     {
         List<Error> errors = new();
 
@@ -73,7 +78,7 @@ public class Employee
         }
 
         return new Employee(
-            id ?? Guid.NewGuid(),
+            id ?? ObjectId.GenerateNewId().ToString(),
             firstName,
             lastName,
             age,
@@ -88,13 +93,13 @@ public class Employee
         return Create(
             request.FirstName,
             request.LastName,
-            request.age,
+            request.Age,
             request.StartDateTime,
             request.DateOfBirth,
             request.SkillSet);
     }
 
-    public static ErrorOr<Employee> From(Guid id, UpsertEmployeeRequest request)
+    public static ErrorOr<Employee> From(string id, UpsertEmployeeRequest request)
     {
         return Create(
             request.FirstName,

@@ -4,6 +4,8 @@ using EmployeeManagementSystem.ServiceErrors;
 using EmployeeManagementSystem.Services.Employees;
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
+using MongoDB.Bson;
 
 namespace EmployeeManagementSystem.Controllers;
 
@@ -17,61 +19,88 @@ public class EmployeesController : ApiController
     }
 
     [HttpPost]
-    public IActionResult CreateEmployee(CreateEmployeeRequest request)
+    public async Task<IActionResult> CreateEmployee(CreateEmployeeRequest request)
     {
-        ErrorOr<Employee> requestToEmployeeResult = Employee.From(request);
+        // ErrorOr<Employee> requestToEmployeeResult = Employee.From(request);
 
-        if (requestToEmployeeResult.IsError)
-        {
-            return Problem(requestToEmployeeResult.Errors);
-        }
+        // if(requestToEmployeeResult.IsError)
+        // {
+        //     return Problem(requestToEmployeeResult.Errors);
+        // }
 
-        var employee = requestToEmployeeResult.Value;
-        ErrorOr<Created> createEmployeeResult =_employeeService.CreateEmployee(employee);
+        // var employee= requestToEmployeeResult.Value;
+        // ErrorOr<Created> createEmployeeResult = await _employeeService.CreateEmployee(employee);
 
+        // return createEmployeeResult.Match(
+        //     created => CreatedAtGetEmployee(employee),
+        //     errors => Problem(errors)
+        // );
+
+        var employee = Employee.From(request).Value;
+        ErrorOr<Created> createEmployeeResult = await _employeeService.CreateEmployee(employee);
+    
         return createEmployeeResult.Match(
             created => CreatedAtGetEmployee(employee),
-            errors => Problem(errors));
+            errors => Problem(errors)
+        );
     }
 
-    [HttpGet("{id:guid}")]
-    public IActionResult GetEmployee(Guid id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetEmployee(string id)
     {
-        ErrorOr<Employee> getEmployeeResult = _employeeService.GetEmployee(id);
+        if(!ObjectId.TryParse(id, out var objectId))
+        {
+            return BadRequest("Invalid ObjectId format.");
+        }
+
+        ErrorOr<Employee> getEmployeeResult = await _employeeService.GetEmployee(id);
 
         return getEmployeeResult.Match(
             employee => Ok(MapEmployeeResponse(employee)),
-            errors => Problem(errors));
+            errors => Problem(errors)
+        );
     }
 
-    [HttpPut("{id:guid}")]
-    public IActionResult UpsertEmployee(Guid id, UpsertEmployeeRequest request)
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpsertEmployee(string id, UpsertEmployeeRequest request)
     {
-        ErrorOr<Employee> requestToEmployeeResult = Employee.From(id, request);
+        if(!ObjectId.TryParse(id, out var objectId))
+        {
+            return BadRequest("Invalid ObjectId format.");
+        }
 
-        if (requestToEmployeeResult.IsError)
+        ErrorOr<Employee> requestToEmployeeResult = Employee.From(objectId.ToString(), request);
+
+        if(requestToEmployeeResult.IsError)
         {
             return Problem(requestToEmployeeResult.Errors);
         }
 
         var employee = requestToEmployeeResult.Value;
-        ErrorOr<UpsertedEmployee> upsertEmployeeResult =_employeeService.UpsertEmployee(employee);
-
+        ErrorOr<UpsertedEmployee> upsertEmployeeResult = await _employeeService.UpsertEmployee(employee);
 
         return upsertEmployeeResult.Match(
             upserted => upserted.IsNewlyCreated ? CreatedAtGetEmployee(employee) : NoContent(),
-            errors => Problem(errors));
+            errors => Problem(errors) 
+        );
     }
 
-    [HttpDelete("{id:guid}")]
-    public IActionResult DeleteEmployee(Guid id)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteEmployee(string id)
     {
-        ErrorOr<Deleted> deleteEmployeeResult = _employeeService.DeleteEmployee(id);
+        if(!ObjectId.TryParse(id, out var objectId))
+        {
+            return BadRequest("Invalid ObjectId format.");
+        }
+
+        ErrorOr<Deleted> deleteEmployeeResult = await _employeeService.DeleteEmployee(id);
 
         return deleteEmployeeResult.Match(
             deleted => NoContent(),
-            errors => Problem(errors));
+            errors => Problem(errors)
+        );
     }
+
     
     private static EmployeeResponse MapEmployeeResponse(Employee employee){
         return new EmployeeResponse(
@@ -82,7 +111,7 @@ public class EmployeesController : ApiController
             employee.StartDateTime,
             employee.DateOfBirth,
             employee.LastModifiedDateTime,
-            employee.Skillset);
+            employee.SkillSet);
     }
 
     private CreatedAtActionResult CreatedAtGetEmployee(Employee employee)

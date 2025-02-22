@@ -13,8 +13,8 @@ public static class Errors
 
         public static Error InvalidAge => Error.Validation(
             code: "Employee.InvalidAge",
-            description: $"Employee age must be at least {Models.Employee.MinNameLength}" +
-             $" and at most {Models.Employee.MaxNameLength}.");
+            description: $"Employee age must be at least {Models.Employee.MinAge}" +
+             $" and at most {Models.Employee.MaxAge}.");
 
         public static Error NotFound => Error.NotFound(
             code: "Employee.NotFound",
