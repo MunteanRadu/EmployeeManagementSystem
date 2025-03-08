@@ -8,4 +8,5 @@ public record EmployeeResponse(
     DateTime StartDateTime,
     DateTime DateOfBirth,
     DateTime LastModifiedDateTime,
-    List<string> SkillSet);
+    List<string> SkillSet
+);

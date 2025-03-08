@@ -6,4 +6,5 @@ public record CreateEmployeeRequest(
     int Age,
     DateTime StartDateTime,
     DateTime DateOfBirth,
-    List<string> SkillSet);
+    List<string> SkillSet
+);

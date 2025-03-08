@@ -17,6 +17,17 @@ public class EmployeeService : IEmployeeService
         _employeeCollection = database.GetCollection<Employee>("Employees");
     }
 
+    public async Task<ErrorOr<List<Employee>>> GetEmployees()
+    {
+        var employees = await _employeeCollection.Find(Builders<Employee>.Filter.Empty).ToListAsync();
+
+        if (employees.Count == 0) {
+            return new List<Employee>();
+        }
+
+        return employees;
+    }
+
     public async Task<ErrorOr<Created>> CreateEmployee(Employee employee)
     {
         await _employeeCollection.InsertOneAsync(employee);

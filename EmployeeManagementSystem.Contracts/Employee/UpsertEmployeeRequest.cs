@@ -6,4 +6,5 @@ public record UpsertEmployeeRequest(
     int age,
     DateTime StartDateTime,
     DateTime DateOfBirth,
-    List<string> SkillSet);
+    List<string> SkillSet
+);

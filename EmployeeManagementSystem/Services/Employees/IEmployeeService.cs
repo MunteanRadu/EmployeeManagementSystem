@@ -6,6 +6,7 @@ namespace EmployeeManagementSystem.Services.Employees;
 
 public interface IEmployeeService
 {
+    Task<ErrorOr<List<Employee>>> GetEmployees();
     Task<ErrorOr<Created>> CreateEmployee(Employee employee);
     Task<ErrorOr<Employee>> GetEmployee(string id);
     Task<ErrorOr<UpsertedEmployee>> UpsertEmployee(Employee employee);

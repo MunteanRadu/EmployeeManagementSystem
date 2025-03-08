@@ -18,24 +18,20 @@ public class EmployeesController : ApiController
         _employeeService = employeeService;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetEmployees()
+    {
+        ErrorOr<List<Employee>> getEmployeesResult = await _employeeService.GetEmployees();
+
+        return getEmployeesResult.Match(
+            employees => Ok(employees.Select(employee => MapEmployeeResponse(employee))),
+            errors => Problem(errors)
+        );
+    }
+
     [HttpPost]
     public async Task<IActionResult> CreateEmployee(CreateEmployeeRequest request)
     {
-        // ErrorOr<Employee> requestToEmployeeResult = Employee.From(request);
-
-        // if(requestToEmployeeResult.IsError)
-        // {
-        //     return Problem(requestToEmployeeResult.Errors);
-        // }
-
-        // var employee= requestToEmployeeResult.Value;
-        // ErrorOr<Created> createEmployeeResult = await _employeeService.CreateEmployee(employee);
-
-        // return createEmployeeResult.Match(
-        //     created => CreatedAtGetEmployee(employee),
-        //     errors => Problem(errors)
-        // );
-
         var employee = Employee.From(request).Value;
         ErrorOr<Created> createEmployeeResult = await _employeeService.CreateEmployee(employee);
     
